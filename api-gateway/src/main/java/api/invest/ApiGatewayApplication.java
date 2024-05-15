@@ -1,13 +1,12 @@
-package api.invest.investapibackend;
+package api.invest;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class InvestApiBackendApplication {
-
+public class ApiGatewayApplication {
     public static void main(String[] args) {
-        SpringApplication.run(InvestApiBackendApplication.class, args);
+        SpringApplication.run(ApiGatewayApplication.class, args);
     }
 
 }
