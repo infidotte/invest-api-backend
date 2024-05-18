@@ -33,3 +33,30 @@ databaseChangeLog:
                   type: varchar(255)
                   constraints:
                     nullable: false
+  - changeSet:
+      id: add-uuid-generation-to-user-id
+      author: evdak
+      changes:
+        - addDefaultValue:
+            tableName: users
+            columnDataType: uuid
+            columnName: id
+            defaultValueComputed: 'gen_random_uuid ()'
+  - changeSet:
+      id: add-enabled-and-verifyCode-columns
+      author: evdak
+      changes:
+        - addColumn:
+            tableName: users
+            columns:
+              - column:
+                  name: enabled
+                  type: boolean
+                  constraints:
+                    nullable: false
+                  defaultValueBoolean: false
+              - column:
+                  name: verifyCode
+                  type: int
+                  constraints:
+                    nullable: false

@@ -1,36 +1,35 @@
 package api.invest.controller;
 
+import api.invest.dto.AuthorizationRequestDto;
+import api.invest.dto.JwtResponseDto;
+import api.invest.dto.RefreshJwtRequestDto;
 import api.invest.dto.RegistrationRequestDto;
-import api.invest.entity.Role;
-import api.invest.entity.User;
-import api.invest.repository.UserRepository;
+import api.invest.service.AuthService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.RequestEntity;
-import org.springframework.http.ResponseEntity;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
-import java.util.UUID;
-
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 public class AuthController {
-    private final UserRepository userRepository;
+    private final AuthService authService;
 
     @PostMapping("/login")
-    public Mono<ResponseEntity> login(@RequestBody RequestEntity requestEntity) {
-        return Mono.just(ResponseEntity.ok().body("success"));
+    public Mono<JwtResponseDto> login(@RequestBody AuthorizationRequestDto requestDto) {
+        return authService.login(requestDto);
     }
 
     @PostMapping("/registration")
-    public Mono<User> registration(@RequestBody RegistrationRequestDto requestDto) {
-        return Mono.just(userRepository.save(new User(UUID.randomUUID(), requestDto.username(), requestDto.email(), requestDto.password(), Role.ROLE_USER)));
+    public Mono<JwtResponseDto> registration(@RequestBody RegistrationRequestDto requestDto) {
+        return authService.registration(requestDto);
     }
 
     @PostMapping("/refresh")
-    public Mono<ResponseEntity> refresh(@RequestBody RequestEntity requestEntity) {
-        return Mono.just(ResponseEntity.ok().body("success"));
+    public Mono<JwtResponseDto> refresh(@RequestBody RefreshJwtRequestDto requestDto) {
+        return authService.refresh(requestDto.refreshToken());
     }
 }

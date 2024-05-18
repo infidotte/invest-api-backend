@@ -1,10 +1,12 @@
 package api.invest.repository;
 
 import api.invest.entity.User;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import reactor.core.publisher.Mono;
 
-public interface UserRepository extends CrudRepository<User, Long> {
+import java.util.UUID;
+
+public interface UserRepository extends ReactiveCrudRepository<User, UUID> {
 
     Mono<User> findByUsername(String username);
 
