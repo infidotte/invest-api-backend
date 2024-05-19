@@ -1,0 +1,22 @@
+server:
+  port: ${SERVER_PORT:8081}
+spring:
+  application:
+    name: mail-service
+  mail:
+    host: ${MAIL_HOST:live.smtp.mailtrap.io}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USERNAME:api}
+    password: ${MAIL_PASSWORD:1b9f46c00f9015509ed6a27fb08135ad}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+        debug:
+          true
+eureka:
+  client:
+    service-url:
+      default-zone: ${DISCOVERY_URL:localhost:8761/eureka/}

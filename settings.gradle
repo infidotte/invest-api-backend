@@ -1,4 +1,5 @@
 rootProject.name = 'invest-api-backend'
 include 'api-gateway'
 include 'discovery-service'
+include 'mail-service'
 
