@@ -56,7 +56,7 @@ databaseChangeLog:
                     nullable: false
                   defaultValueBoolean: false
               - column:
-                  name: verifyCode
+                  name: verify_code
                   type: int
                   constraints:
                     nullable: false
