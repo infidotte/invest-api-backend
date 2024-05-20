@@ -60,3 +60,4 @@ databaseChangeLog:
                   type: int
                   constraints:
                     nullable: false
+                  defaultValueNumeric: "0"

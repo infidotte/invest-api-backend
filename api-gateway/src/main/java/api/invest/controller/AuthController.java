@@ -7,9 +7,7 @@ import api.invest.dto.RegistrationRequestDto;
 import api.invest.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 @Slf4j
@@ -24,12 +22,17 @@ public class AuthController {
     }
 
     @PostMapping("/registration")
-    public Mono<JwtResponseDto> registration(@RequestBody RegistrationRequestDto requestDto) {
+    public Mono<Void> registration(@RequestBody RegistrationRequestDto requestDto) {
         return authService.registration(requestDto);
     }
 
     @PostMapping("/refresh")
     public Mono<JwtResponseDto> refresh(@RequestBody RefreshJwtRequestDto requestDto) {
         return authService.refresh(requestDto.refreshToken());
+    }
+
+    @GetMapping("/verify")
+    public Mono<Void> verify(@RequestParam(name = "username") String username, @RequestParam(name = "code") int code) {
+        return authService.verify(username, code);
     }
 }

@@ -16,6 +16,10 @@ spring:
             enable: true
         debug:
           true
+mail:
+  credentials:
+    name: Me
+    email: mailtrap@demomailtrap.com
 eureka:
   client:
     service-url:

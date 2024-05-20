@@ -24,6 +24,7 @@ dependencies {
     implementation("org.postgresql:postgresql")
     implementation("io.springfox:springfox-boot-starter:$springFox")
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+    implementation "com.playtika.reactivefeign:feign-reactor-spring-cloud-starter:$reactiveFeignClient"
     testImplementation platform("org.junit:junit-bom:$junitBom")
     testImplementation("org.junit.jupiter:junit-jupiter")
 }

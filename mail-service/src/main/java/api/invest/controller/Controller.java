@@ -1,6 +1,6 @@
 package api.invest.controller;
 
-import api.invest.dto.EmailDto;
+import api.invest.dto.VerificationDto;
 import api.invest.service.SenderService;
 import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
@@ -12,11 +12,11 @@ import java.io.UnsupportedEncodingException;
 
 @RestController
 @RequiredArgsConstructor
-public class EmailController {
+public class Controller {
     private final SenderService sender;
 
-    @PostMapping("/send")
-    public void send(@RequestBody EmailDto email) throws MessagingException, UnsupportedEncodingException {
-        sender.sendEmail(email);
+    @PostMapping("/send-verification")
+    public void send(@RequestBody VerificationDto verificationDto) throws MessagingException, UnsupportedEncodingException {
+        sender.sendVerification(verificationDto);
     }
 }

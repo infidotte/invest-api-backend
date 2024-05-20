@@ -41,6 +41,11 @@ jwt:
     refresh: 5803daf0fe4c11d1cd8691969a8c2006bb9beb9478bac49dfe5c46cece7e99f4
   accessExpirationMinutes: 5
   refreshExpirationDays: 30
+clients:
+  mail-service:
+    name: mail-service
+    path:
+    url:
 logging:
   level:
     org.springframework.r2dbc: debug
