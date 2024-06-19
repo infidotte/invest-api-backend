@@ -1,0 +1,63 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-users-table
+      author: evdak
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: username
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: password
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: role
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: add-uuid-generation-to-user-id
+      author: evdak
+      changes:
+        - addDefaultValue:
+            tableName: users
+            columnDataType: uuid
+            columnName: id
+            defaultValueComputed: 'gen_random_uuid ()'
+  - changeSet:
+      id: add-enabled-and-verifyCode-columns
+      author: evdak
+      changes:
+        - addColumn:
+            tableName: users
+            columns:
+              - column:
+                  name: enabled
+                  type: boolean
+                  constraints:
+                    nullable: false
+                  defaultValueBoolean: false
+              - column:
+                  name: verify_code
+                  type: int
+                  constraints:
+                    nullable: false
+                  defaultValueNumeric: "0"

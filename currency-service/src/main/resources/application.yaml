@@ -1,0 +1,24 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: currency-service
+  cache:
+    type: redis
+    redis:
+      time-to-live: 30
+  data:
+    redis:
+      host: redis-17530.c62.us-east-1-4.ec2.redns.redis-cloud.com
+      port: 17530
+      database: 0
+      username: default
+      password: af22ZGrb3egcHOjNLztheamfA5hN5xft
+clients:
+  cbr-client:
+    name: cbr-client
+    url: https://cbr.ru
+    path: /scripts
+logging:
+  level:
+    reactor.netty.http.client: DEBUG

@@ -1,0 +1,13 @@
+server:
+  port: ${DISCOVERY_PORT:8761}
+eureka:
+  instance:
+    hostname: ${DISCOVERY_HOST:localhost}
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      default-zone: ${eureka.instance.hostname}:${server.port}/eureka/
+logging:
+  pattern:
+    console: "%C{1.} [%-5level] %d{HH:mm:ss} - %msg%n"

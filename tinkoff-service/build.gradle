@@ -1,0 +1,22 @@
+plugins {
+    id 'java'
+}
+
+group = parent.group
+version = parent.version
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation "com.playtika.reactivefeign:feign-reactor-spring-cloud-starter:$reactiveFeignClient"
+    //implementation 'ru.tinkoff.piapi:java-sdk-core:1.19'
+    implementation 'io.springfox:springfox-boot-starter:3.0.0'
+}
+
+test {
+    useJUnitPlatform()
+}
