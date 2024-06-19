@@ -42,15 +42,14 @@ public class AuthService {
     }
 
     public Mono<Void> registration(RegistrationRequestDto requestDto) {
-        return sendVerification(prepareUserToSave(requestDto));
-//        return Mono.just(requestDto)
-//                .map(this::prepareUserToSave)
-//                .flatMap(userRepository::save)
-//                .doOnNext(this::sendVerification)
-//                .doOnNext(user -> log.info("Registered user: {}", user))
-//                .doOnError(throwable -> {
-//                    throw new RuntimeException(throwable.getMessage());
-//                }).then();
+        return Mono.just(requestDto)
+                .map(this::prepareUserToSave)
+                .flatMap(userRepository::save)
+                .doOnNext(this::sendVerification)
+                .doOnNext(user -> log.info("Registered user: {}", user))
+                .doOnError(throwable -> {
+                    throw new RuntimeException(throwable.getMessage());
+                }).then();
     }
 
     public Mono<JwtResponseDto> refresh(String refreshToken) {

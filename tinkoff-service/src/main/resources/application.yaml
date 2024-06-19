@@ -1,0 +1,25 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: tinkoff-service
+  cloud:
+    openfeign:
+      client:
+        config:
+          default:
+            logger-level: full
+clients:
+  tinkoff-invest-api:
+    sandbox:
+      name: tinkoff-invest-api-sandbox
+      url: https://sandbox-invest-public-api.tinkoff.ru/rest
+      path: /tinkoff.public.invest.api.contract.v1.SandboxService
+    production:
+      name: tinkoff-invest-api-sandbox
+      url: https://invest-public-api.tinkoff.ru/rest
+      path: /tinkoff.public.invest.api.contract.v1
+    token: t.N9J7wcXTIoWVTsHH_wR8JH2lnrJhCUEYLstpJSnirIUNG64tKFL2uuxPyWGRNpi3-CyHjtO8YtqX4j4se9H62g
+logging:
+  level:
+    reactor.netty.http.client: debug
